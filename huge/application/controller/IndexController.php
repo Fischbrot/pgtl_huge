@@ -29,4 +29,13 @@ class IndexController extends Controller
         }
 
     }
+
+    public function delete()
+    {
+
+        
+
+
+        $this->View->render('index/delete');
+    }
 }
