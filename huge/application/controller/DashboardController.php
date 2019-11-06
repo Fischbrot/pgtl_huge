@@ -21,6 +21,20 @@ class DashboardController extends Controller
      */
     public function index()
     {
+
+
+
+
         $this->View->render('dashboard/index');
+    }
+
+
+    public function upload()
+    {
+
+        
+
+
+        $this->View->render('dashboard/upload');
     }
 }

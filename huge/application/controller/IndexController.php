@@ -16,6 +16,17 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $this->View->render('index/index');
+        $user = UserModel::getUserDataByUserNameOrEmail(Session::get('user_name'));
+        if(isset($user->user_id)) {
+            $this->View->render('index/index', array(
+                'public_images' => GalleryModel::getPublicContent(),
+                'private_images' => GalleryModel::getUserContent($user->user_id)
+            ));
+        } else {
+            $this->View->render('index/index', array(
+                'public_images' => GalleryModel::getPublicContent()
+            ));
+        }
+
     }
 }
