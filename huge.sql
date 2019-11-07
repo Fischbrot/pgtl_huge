@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 06. Nov 2019 um 22:20
+-- Erstellungszeit: 07. Nov 2019 um 06:16
 -- Server-Version: 10.1.38-MariaDB
 -- PHP-Version: 7.3.3
 
@@ -21,6 +21,27 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `huge`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `chats`
+--
+
+CREATE TABLE `chats` (
+  `id` int(11) NOT NULL,
+  `chat_host` text NOT NULL,
+  `chat_partner` text NOT NULL,
+  `group_chat` int(11) NOT NULL,
+  `chatname` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `chats`
+--
+
+INSERT INTO `chats` (`id`, `chat_host`, `chat_partner`, `group_chat`, `chatname`) VALUES
+(1, '1', '2', 0, '');
 
 -- --------------------------------------------------------
 
@@ -49,6 +70,27 @@ INSERT INTO `images` (`id`, `user_id`, `public`, `path`) VALUES
 (8, 1, 1, 'HXqJgAgvOBo4nkePMd8z3iRAvtwj1CtP'),
 (10, 1, 1, 'v9dMFjBbxNGWn9ss1jxkGoEMQDDxP8Hk'),
 (11, 1, 1, 'coqwEnoc8u1cg6u9MCOO7L9TQeAaB0l6');
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `messages`
+--
+
+CREATE TABLE `messages` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `message` text NOT NULL,
+  `chat_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `messages`
+--
+
+INSERT INTO `messages` (`id`, `user_id`, `timestamp`, `message`, `chat_id`) VALUES
+(1, 1, '2019-11-07 05:15:53', 'Hallo Welt!', 1);
 
 -- --------------------------------------------------------
 
@@ -110,9 +152,21 @@ INSERT INTO `users` (`user_id`, `session_id`, `user_name`, `user_password_hash`,
 --
 
 --
+-- Indizes für die Tabelle `chats`
+--
+ALTER TABLE `chats`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indizes für die Tabelle `images`
 --
 ALTER TABLE `images`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indizes für die Tabelle `messages`
+--
+ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -134,10 +188,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT für Tabelle `chats`
+--
+ALTER TABLE `chats`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT für Tabelle `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT für Tabelle `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT für Tabelle `notes`
